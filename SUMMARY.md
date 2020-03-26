@@ -6,7 +6,7 @@
 ## Getting Started
 
 * [Getting Started](getting-started/start.md)
-* [Migrated from Pre-1.0 Release](getting-started/migrated-from-pre-1.0-release.md)
+* [Migrate from Pre-1.0 Releases](getting-started/migrated-from-pre-1.0-release.md)
 
 ## Guides
 
