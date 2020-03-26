@@ -1,18 +1,22 @@
 # Table of contents
 
 * [What is Authcore](README.md)
+* [Release Notes](release-notes.md)
 
 ## Getting Started
 
 * [Getting Started](getting-started/start.md)
+* [Migrated from Pre-1.0 Release](getting-started/migrated-from-pre-1.0-release.md)
 
 ## Guides
 
 * [Installation](guides/install.md)
-* [Add Login to Your App](guides/app.md)
+* [Web App Guide](guides/web-app.md)
+* [Single Page App Guide](guides/single-page-app.md)
+* [React Native Guide](guides/react-native.md)
 * [Configuration](guides/configuration.md)
 * [Server-to-server Authentication](guides/server-to-server.md)
-* [Deployment](guides/production.md)
+* [Production Deployment](guides/production.md)
 
 ## API
 
