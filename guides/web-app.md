@@ -1,2 +1,2 @@
-# Web App Guide
+# Web App
 

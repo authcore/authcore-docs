@@ -11,9 +11,9 @@
 ## Guides
 
 * [Installation](guides/install.md)
-* [Web App Guide](guides/web-app.md)
-* [Single Page App Guide](guides/single-page-app.md)
-* [React Native Guide](guides/react-native.md)
+* [Web App](guides/web-app.md)
+* [Single Page App](guides/single-page-app.md)
+* [React Native App](guides/react-native.md)
 * [Configuration](guides/configuration.md)
 * [Server-to-server Authentication](guides/server-to-server.md)
 * [Production Deployment](guides/production.md)

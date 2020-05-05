@@ -1,2 +1,2 @@
-# React Native Guide
+# React Native App
 

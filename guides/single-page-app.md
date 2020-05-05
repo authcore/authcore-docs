@@ -1,2 +1,2 @@
-# Single Page App Guide
+# Single Page App
 
