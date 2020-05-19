@@ -1,9 +1,3 @@
----
-description: >-
-  This guide shows how to use Authcore for in mobile application using React
-  Native framework.
----
-
 # React Native Widgets
 
 ## Overview
@@ -13,69 +7,88 @@ The module provides an in-app browser to sign in through Authcore in return of t
 ## Installation
 
 {% hint style="warning" %}
-Not published to npm until 1.0
+The packages will be published to npm when v1.0 is released
 {% endhint %}
 
-~~Install via npm:~~
-
-```text
-$ sh npm install react-native-authcore
-```
-
-~~Install via yarn:~~
+Install via npm:
 
 ```bash
-$ sh yarn add react-native-authcore
+$ npm install react-native-authcore
 ```
 
-Install package directly from Gitlab repository:
+Install via yarn:
 
 ```bash
-yarn add https://gitlab.com/blocksq/react-native-authcore
+$ yarn add react-native-authcore
 ```
-
-## Set Up
 
 ### Link to native module
 
-To add the functionality of the React Native Authcore module to your project you need to link it.
+To add the functionality of the React Native Authcore module to your project you need to link it:
 
 ```bash
-react-native link react-native-authcore
+$ react-native link react-native-authcore
 ```
 
-### Configure server Callback URLs
+## Integrate Authcore in your Application
 
-A callback URL is a URL in your application where Authcore redirects the user back to the app after they have sign in.
-
-#### Android Callback
-
-```text
-{YOUR_APP_PACKAGE_NAME}://
-```
-
-You can find this at the top of your `AndroidManifest.xml` file located in the `android/app/src/main/` folder.
-
-Below is the example of that, in this case package name is `com.authcoresamples`.
-
-```markup
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.authcoresamples"
-```
+### iOS
 
 #### iOS Callback
 
-```text
-{PRODUCT_BUNDLE_IDENTIFIER}://
+In the file `ios/<YOUR PROJECT>/AppDelegate.m`, add the following:
+
+```objectivec
+#import <React/RCTLinkingManager.h>
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+  return [RCTLinkingManager application:application openURL:url
+                      sourceApplication:sourceApplication annotation:annotation];
+}
 ```
 
-In latest iOS app `PRODUCT_BUNDLE_IDENTIFIER` can be found in `project.pbxproj`, whereas `PRODUCT_NAME` should be the project name
+Next you will need to add a `URLScheme` using your App's bundle identifier to allow redirection back to the app.
 
-> Current workaround: provide the callback link to add to whitelist manuelly
+In the file `ios/<YOUR PROJECT>/Info.plist`, locate the value of CFBundleIdentifier. In latest version for iOS app, this should be `$(PRODUCT_BUNDLE_IDENTIFIER)`
 
-### Integrate Authcore to your Application
+```markup
+<key>CFBundleIdentifier</key>
+<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+```
 
-#### Configure Android
+And then register a URL type entry using the value of `CFBundleIdentifier` as the value for the `CFBundleURLSchemes`
+
+```markup
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+        <key>CFBundleTypeRole</key>
+        <string>None</string>
+        <key>CFBundleURLName</key>
+        <string>$(PRODUCT_BUNDLE_IDENTIFIER).authcore</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+        </array>
+    </dict>
+</array>
+```
+
+Update the podfile used in iOS, in `/ios`, run the following:
+
+```text
+pod install
+```
+
+{% hint style="info" %}
+iOS prompts users when signing in with a web browser. `authcore.dev` will be replaced with your domain name.
+{% endhint %}
+
+![](../.gitbook/assets/image%20%281%29.png)
+
+### Android
 
 In the file `android/app/src/main/AndroidManifest.xml` you must make sure the `MainActivity` of the app has a launchMode value of `singleTask` and that it has the following intent filter:
 
@@ -125,57 +138,9 @@ In the file `android/app/src/main/AndroidManifest.xml` you must make sure the `M
 
 The rule to interpret deep link in `intent-filter` is to include all combinations of their combined attributes from `<data>` tag. To ensure starting Authcore for sign in without showing app picker, use a separated `intent-filter` for the app link. Check [https://developer.android.com/training/app-links/deep-linking\#adding-filters](https://developer.android.com/training/app-links/deep-linking#adding-filters) for more details about deep link in Android.
 
-#### Configure iOS
-
-In the file `ios/<YOUR PROJECT>/AppDelegate.m`, add the following:
-
-```objectivec
-#import <React/RCTLinkingManager.h>
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-  return [RCTLinkingManager application:application openURL:url
-                      sourceApplication:sourceApplication annotation:annotation];
-}
-```
-
-Next you will need to add a URLScheme using your App's bundle identifier to allow redirection back to the app.
-
-In the file `ios/<YOUR PROJECT>/Info.plist`, locate the value of CFBundleIdentifier. In latest version for iOS app, this should be `$(PRODUCT_BUNDLE_IDENTIFIER)`
-
-```markup
-<key>CFBundleIdentifier</key>
-<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-```
-
-and then register a URL type entry using the value of `CFBundleIdentifier` as the value for the `CFBundleURLSchemes`
-
-```markup
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>None</string>
-        <key>CFBundleURLName</key>
-        <string>$(PRODUCT_BUNDLE_IDENTIFIER).authcore</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-        </array>
-    </dict>
-</array>
-```
-
-Update the podfile used in iOS, in `/ios`, run the following:
-
-```bash
-pod install
-```
-
 ## Sign In
 
-First import the `Authcore` module and create a new `Authcore` instance.
+First import the `Authcore` module and create a new `Authcore`instance.
 
 ```javascript
 import Authcore from 'react-native-authcore'
@@ -186,7 +151,7 @@ const authcore = new Authcore({
 })
 ```
 
-Then presented the hosted login screen:
+Then present the hosted login screen:
 
 ```javascript
 authcore
@@ -211,7 +176,7 @@ authcore
 
 Please be reminded that access token should be stored in secure storage. Developers are adviced to have such solution to store the access token returned from the sign in page.
 
-## Settings Widget
+## Setting widgets
 
 The module also provides widgets for setting the user profile and security settings.
 
@@ -221,7 +186,7 @@ For user profile, use component `ProfileScreen`.
 
 For settings widget it is shown by an in-app browser. To instantiate it, run `settings.show` function. See the example below for detail.
 
-## Parameters
+### Props Parameters
 
 | Prop | Type | Description |
 | :--- | :--- | :--- |
@@ -231,9 +196,9 @@ For settings widget it is shown by an in-app browser. To instantiate it, run `se
 | primaryColour | OPTIONAL, string | The primary colour of the widget. Primary colour mainly consists of general button colour, link colour and border colour when the field box is in focus. Allow colour code, rgb colour value or named colour. |
 | successColour | OPTIONAL, string | The success colour of the widget. Success colour mainly consists of verified message and icon. Allow colour code, rgb colour value or named colour. |
 | dangerColour | OPTIONAL, string | The danger colour of the widget. Danger colour mainly consists of error message, button colour for destructive action \(e.g. Remove contact\) and invalid field box border. Allow colour code, rgb colour value or named colour. |
-| socialLoginPaneStyle | OPTIONAL, string | The flag to decide position where social login pane should located, either `top` or `bottom`, default to be `bottom`. |
+| socialLoginPaneStyle | OPTIONAL, string | The flag to decide position where social login pane should located, either `top`or `bottom`, default to be `bottom`. |
 
-```javascript
+```jsx
 // Assume Authcore instance is instantiated and named as `authcore`. Check sign in section to see how to create new instance.
 // Assume state contains access token named as `accessToken`, access token should be stored in secure storage
 
@@ -242,9 +207,9 @@ render () {
 }
 ```
 
-Example for settings widget
+Example for settings widget:
 
-```javascript
+```jsx
 // Component in react-native
 
 // Function for the component
@@ -268,19 +233,16 @@ render() {
     </View>
   );
 }
+
 ```
 
-### Styling
+### Setting Width and Height of the Widgets
 
-It is possible to constraint the widget widget and height to fit the app design, to do that apply `containerStyle` with `maxWidget` or `maxHeight` on the widget.
+It is possible to constraint the widget width and height to fit the app design, to do that apply `containerStyle` with `maxWidget`or `maxHeight` on the widget.
 
-```javascript
+```jsx
 render () {
   return <authcore.ProfileScreen accessToken={ this.state.accessToken } containerStyle={{ maxHeight: 300 }} />
-}\
+}
 ```
-
-## Sign out using access token
-
-> TODO: Handle sign out case with direct API access
 
