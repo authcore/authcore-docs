@@ -21,7 +21,7 @@
 ## API
 
 * [API Overview](api/overview.md)
-* [OAuth 2.0 / Open Connect](api/oauth.md)
+* [OAuth 2.0 / OpenID Connect](api/oauth.md)
 
 ## SDK
 

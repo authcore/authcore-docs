@@ -1,4 +1,4 @@
-# OAuth 2.0 / Open Connect
+# OAuth 2.0 / OpenID Connect
 
 Authcore is complaint to [OAuth 2.0](http://oauth.net/documentation) and [OpenID Connect](http://openid.net/) standards. The OAuth 2.0 protocol provides API access control via scoped access tokens, and OpenID Connect provides user authentication and single sign-on \(SSO\) funcitonality.
 
@@ -25,7 +25,7 @@ Currently empty.
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="response\_type" type="string" required=true %}
-Any combination of code, token, and id\_token.
+Any combination of `code`, `token`, and `id_token`.
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="redirect\_uri" type="string" required=true %}
@@ -126,12 +126,6 @@ Returns OpenID Connect metadata about your authorization server.
 
 {% api-method-spec %}
 {% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="" type="string" required=false %}
-
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-{% endapi-method-request %}
 
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}
@@ -169,12 +163,6 @@ Returns a JSON Web Key Set \(JWKS\) that contains the public keys that can be us
 
 {% api-method-spec %}
 {% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="" type="string" required=false %}
-
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-{% endapi-method-request %}
 
 {% api-method-response %}
 {% api-method-response-example httpCode=200 %}

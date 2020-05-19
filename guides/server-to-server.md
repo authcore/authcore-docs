@@ -1,6 +1,6 @@
 # Server-to-server Authentication
 
-Instead of obtaining access token using the OAuth 2.0 flow, you can call Management API using a signed JWT directly as a bearer token, . You can avoid having to make a network request before making an API call. To do so:
+Instead of obtaining access token using the OAuth 2.0 flow, you can call Authcore API using a signed JWT directly as a bearer token, . You can avoid having to make a network request before making an API call. To do so:
 
 1. Generate an EC private key, of size 256, and output it to a file named `key.pem`:
 
