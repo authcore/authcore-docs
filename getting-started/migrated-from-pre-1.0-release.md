@@ -36,8 +36,6 @@ Several configuration keys and values are changed in Authcore 1.0 to become more
 
 Authcore can be deployed using a single Docker container. Kubernetes deployment is made easier as well.
 
-{% page-ref page="../guides/production.md" %}
-
 
 
 

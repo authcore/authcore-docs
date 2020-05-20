@@ -16,7 +16,6 @@
 * [React Native App](guides/react-native.md)
 * [Configuration](guides/configuration.md)
 * [Server-to-server Authentication](guides/server-to-server.md)
-* [Production Deployment](guides/production.md)
 
 ## API
 
