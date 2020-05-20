@@ -82,19 +82,6 @@ Set up secret for accessing Authcore docker registry:
 $ kubectl create secret docker-registry authcore-registry --namespace authcore --docker-server=registry.gitlab.com --docker-username=<deploy-token-username> --docker-password=<deploy-token-password> --docker-email=<email>
 ```
 
-Generate random string for `secret_key_base`:
-
-```bash
-openssl rand -hex 32
-```
-
-The server requires a ECDSA key to sign JWT token. Generate the key pair using the following commands:
-
-```bash
-$ openssl ecparam -genkey -name prime256v1 -noout -out private.pem
-$ openssl ec -in private.pem -pubout -out public.pem
-```
-
 Change the values in `values.yaml` to override default values for OAuth configuration, root keys etc.
 
 ```bash
