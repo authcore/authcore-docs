@@ -26,6 +26,8 @@ Admin Portal \(previously, Management Web\) is completed redesigned to be more u
 
 Users can use a standalone User Portal to change security settings.
 
+![](../.gitbook/assets/image%20%2818%29.png)
+
 ### Configurations
 
 Several configuration keys and values are changed in Authcore 1.0 to become more consistent and easy-to-use.

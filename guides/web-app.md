@@ -28,6 +28,8 @@ Authcore implements the Authorization Code Flow with Proof Key for Code Exchange
 * Your application sends this code, along with the code verifier, to the OAuth 2.0 Token endpoint. Authcore returns access and ID tokens, and optionally a refresh token.
 * Your application can now use these tokens to call the resource server \(for example an API\) on behalf of the user.
 
+![](../.gitbook/assets/image%20%2810%29.png)
+
 {% page-ref page="../api/oauth.md" %}
 
 ### Web Widgets

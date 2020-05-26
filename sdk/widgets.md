@@ -120,52 +120,31 @@ For register page, the field with `Email or mobile` label refer as contact field
 
 For `register` as initialScreen:
 
-![design-register](https://blocksq.gitlab.io/authcore-docs/docs/assets/register.png)
+![](../.gitbook/assets/image%20%2812%29.png)
 
 When registration is completed, the screen will show loading spinner and redirect to `successRedirectUrl` set in widget instance.
 
 For `signin` as initialScreen:
 
-![design-signin](https://blocksq.gitlab.io/authcore-docs/docs/assets/signin.png)
+![](../.gitbook/assets/image%20%287%29.png)
 
 Social login pane list:
 
-![list-social-login](https://blocksq.gitlab.io/authcore-docs/docs/assets/signin-list-social-login-pane.png)
+![](../.gitbook/assets/image%20%2817%29.png)
 
 Normal button size:
 
-![normal-button-size](https://blocksq.gitlab.io/authcore-docs/docs/assets/signin-normal-button.png)
+![](../.gitbook/assets/image%20%2814%29.png)
 
 ### User Widgets
 
 Authcore provides some user widgets for updating a logged in user. These widgets require the `accessToken` parameter, which can be obtained from the `access_token` parameter from `onSuccess` callback in login widgets.
 
-#### AuthCoreWidgets.Profile
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| showAvatar | OPTIONAL, boolean | The flag indicates to show avatar/monogram in profile widget, default to be `false`. |
-
-Show and change the profile of the current user.
-
-![design-profile](https://blocksq.gitlab.io/authcore-docs/docs/assets/profile.png)
-
 #### AuthCoreWidgets.Settings
 
 Show the settings of current login user, including password, 2-steps verification, devices \(i.e. sessions\) and social login sections.
 
-![design-setting](https://blocksq.gitlab.io/authcore-docs/docs/assets/settings.png)
-
-### Others
-
-#### AuthCoreWidgets.RefreshToken
-
-Using new `AuthCoreWidgets.RefreshToken(..)` to handle refresh access token by hidden iframe element. Callbacks from `onTokenUpdated` to renew accessToken. Callbacks from`onTokenUpdatedFail`will be triggered if the update is failed.
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| onTokenUpdated | OPTIONAL, function | Callback after the token is updated successfully. |
-| onTokenUpdatedFail | OPTIONAL, function | Callback after the token update is failed. |
+![](../.gitbook/assets/image%20%2816%29.png)
 
 
 
