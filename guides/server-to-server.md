@@ -19,9 +19,10 @@ Instead of obtaining access token using the OAuth 2.0 flow, you can call Authcor
 
    ```javascript
    {
-   "iss": "serviceaccount:<service_account_id>",
-   "iat": 1511900000,
-   "exp": 1511903600
+     "iss": "serviceaccount:<service_account_id>",
+     "sub": "serviceaccount:<service_account_id>",
+     "iat": 1511900000,
+     "exp": 1511903600
    }
    ```
 
@@ -31,14 +32,19 @@ Instead of obtaining access token using the OAuth 2.0 flow, you can call Authcor
 
    ```javascript
    var jwt = require('jsonwebtoken')
-   var opts = {algorithm: "ES256", issuer: "serviceaccount:1", expiresIn: 60}
+   var opts = {
+     algorithm: "ES256",
+     issuer: "serviceaccount:server",
+     subject: "serviceaccount:server",
+     expiresIn: 60
+   }
    var token = jwt.sign({}, privateKeyPEM, opts)
    ```
 
 5. Call the API, using the signed JWT as the bearer token:
 
    ```http
-   GET /api/management/users HTTP/1.1
+   GET /api/v2/users HTTP/1.1
    Host: testing.authcore.io
    Authorization: Bearer <SIGNED_JWT>
    Content-Type: application/json
