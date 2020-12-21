@@ -146,6 +146,29 @@ Show the settings of current login user, including password, 2-steps verificatio
 
 ![](../.gitbook/assets/image%20%2816%29.png)
 
+#### AuthCoreWidgets.SettingPass
+
+Show the page to create Pass as 2-steps verification factor. It shows a QR code to be scanned for registration, once the process is successful it triggers `onSuccess` callback.
+
+Follow the setting below to configure the page:
+
+```html
+<!-- Element for the widget to be injected -->
+<div id="authcore-pass-container"></div>
+
+<script>
+// Instantiate Pass widget
+new AuthCoreWidgets.SettingPass({
+    container: 'authcore-pass-container', // Id of the HTML element for the widget
+    root: 'https://authcore.example.com/widgets', // Authcore is hosted on the sub-domain of example.com
+    accessToken: 'ACCESS_TOKEN_TO_BE_PROVIDED',
+    internal: true,
+    onSuccess: () => {
+        // Handle the case after the factor registration is successful.
+    }
+});
+</script>
+```
 
 
 ## Analytics
